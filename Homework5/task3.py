@@ -31,10 +31,11 @@ def everything_for_your_cat(cats_data):
     if cats_data:
         for tuple_str in cats_data:
             (cat, age, name, last) = tuple_str
-            if f'{name} {last}' not in dict_str.keys():
-                dict_str[f'{name} {last}'] = f'{cat}, {age}'
+            owner = f'{name} {last}'
+            if owner in dict_str.keys():
+                dict_str[owner] += f'; {cat}, {age}'
             else:
-                dict_str[f'{name} {last}'] += f'; {cat}, {age}'
+                dict_str[owner] = f'{cat}, {age}'
         our_str += '\n'.join([f'{key}: {value}' for key, value in dict_str.items()])
         our_str += '\n'
         dict_str.clear()
